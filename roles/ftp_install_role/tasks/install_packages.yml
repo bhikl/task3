@@ -1,0 +1,13 @@
+---
+  - name: Install libsemanage
+    yum: 
+      name: libsemanage-python
+      state: latest
+  - name: Install policycoreutils
+    yum: 
+      name: policycoreutils-python
+      state: latest
+  - name: Install vsFTPd
+    yum: 
+      name: vsftpd
+      state: latest

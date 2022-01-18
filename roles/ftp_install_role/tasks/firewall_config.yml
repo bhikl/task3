@@ -1,0 +1,13 @@
+---
+  - name: Open FTP Ports (20-21)
+    firewalld:
+      port: 20-21/tcp
+      permanent: true
+      state: enabled
+      immediate: true
+  - name: Open FTP Ports (40900-40999)
+    firewalld:
+      port: "{{ min_port }}-{{ max_port }}/tcp"
+      permanent: true
+      state: enabled
+      immediate: true

@@ -1,0 +1,7 @@
+- name: Start Role
+  hosts: all
+  any_errors_fatal: true
+  become: yes
+  roles:
+    - httpd_install_role
+    - ftp_install_role

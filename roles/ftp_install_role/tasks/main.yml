@@ -1,0 +1,15 @@
+---
+# tasks file for ftp_install_role
+  - name: Include Install Tasks
+    include_tasks: install_packages.yml
+  - name: Include Firewall Config Tasks
+    include_tasks: firewall_config.yml
+  - name: Include SELinux Config Tasks
+    include_tasks: selinux_config.yml
+  - name: Include Directories Config Tasks
+    include_tasks: directory_config.yml
+  - name: Start and Enable vsFTPd
+    service: 
+      name: vsftpd 
+      state: started 
+      enabled: yes

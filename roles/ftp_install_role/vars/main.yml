@@ -1,0 +1,8 @@
+---
+# vars file for ftp_install_role
+ftp_user      : ftp
+ftp_folder    : /etc/vsftpd/
+anon_folder   : /var/ftp/pub
+enable_anonym : YES
+min_port      : 40900
+max_port      : 40999

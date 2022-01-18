@@ -1,0 +1,17 @@
+---
+  - name: Enable SELinux in enforcing mode
+    selinux:
+      policy: targeted
+      state: enforcing  
+  - name: Set ftpd_anon_write to ON
+    seboolean:
+      name: ftpd_anon_write
+      state: yes
+      persistent: yes
+  - name: Add SELinux Context
+    sefcontext:
+      target: "{{ anon_folder }}"
+      setype: public_content_rw_t
+      state: present
+    notify:
+      - Apply new SELinux context

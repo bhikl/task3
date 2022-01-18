@@ -1,0 +1,3 @@
+---
+# defaults file for httpd_install_role
+dest_folder  : /var/www/html

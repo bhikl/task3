@@ -1,0 +1,27 @@
+---
+  - name: Change home for ftp user
+    user:
+      name: "{{ ftp_user }}"
+      home: "{{ anon_folder }}"
+  - name: Create upload directory if it does not exist
+    file:
+      path: "{{anon_folder}}/upload"
+      state: directory
+      mode: '0755'
+      owner: "{{ ftp_user }}"
+      group: "{{ ftp_user }}"
+  - name: Change owner of ftp root
+    file:
+      path: "{{anon_folder}}"
+      state: directory
+      mode: '0555'
+      owner: "{{ ftp_user }}"
+      group: "{{ ftp_user }}"
+    
+  - name: Generate vsftpd.conf File
+    template: 
+      src: vsftpd.j2 
+      dest: "{{ dest_folder }}/vsftpd.conf"
+      mode: 0555
+    notify: 
+      - Restart vsftpd

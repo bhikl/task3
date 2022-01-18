@@ -1,0 +1,25 @@
+---
+# tasks file for httpd_install_role
+  - name: Install Apache Web Server
+    yum: 
+      name: httpd 
+      state: latest
+  - name: Start and Enable Apache Web Server
+    service: 
+      name: httpd 
+      state: started 
+      enabled: yes
+  - name: Open HTTP Port 
+    firewalld:
+      port: 80/tcp
+      permanent: true
+      state: enabled
+      immediate: true
+  - name: Generate index.html File
+    template: 
+      src: index.j2 
+      dest: "{{ dest_folder }}/index.html"
+      mode: 0555
+    notify: 
+      - Restart Apache
+
